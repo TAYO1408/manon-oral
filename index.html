@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Vidéo</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    #container {
+      text-align: center;
+    }
+    video {
+      width: 60%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    #finale {
+      display: none;
+    }
+    #finale img {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    #replayBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #e60073;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #replayBtn:hover {
+      background-color: #c3005f;
+    }
+    @media (max-width: 700px) {
+      video {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <video id="myVideo" controls>
+      <source src="video.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture de cette vidéo.
+    </video>
+
+    <div id="finale">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Red_Heart.svg/1200px-Red_Heart.svg.png" alt="Merci ❤️">
+      <br>
+      <button id="replayBtn">Revoir la vidéo</button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const finale = document.getElementById('finale');
+    const replayBtn = document.getElementById('replayBtn');
+
+    video.onended = function() {
+      video.style.display = 'none';
+      finale.style.display = 'block';
+    };
+
+    replayBtn.onclick = function() {
+      finale.style.display = 'none';
+      video.style.display = 'block';
+      video.currentTime = 0;
+      video.play();
+    };
+  </script>
+</body>
+</html>
